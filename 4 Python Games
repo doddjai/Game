@@ -1,0 +1,93 @@
+import random
+
+def number_guessing_game():
+    number = random.randint(1, 100)
+    attempts = 0
+    print("\n🎯 Number Guessing Game")
+    while True:
+        guess = input("Guess a number between 1 and 100 (or 'q' to quit): ")
+        if guess.lower() == 'q':
+            break
+        if not guess.isdigit():
+            print("Please enter a valid number.")
+            continue
+        guess = int(guess)
+        attempts += 1
+        if guess < number:
+            print("Too low!")
+        elif guess > number:
+            print("Too high!")
+        else:
+            print(f"Correct! You guessed it in {attempts} tries.")
+            break
+
+def pig_dice():
+    print("\n🐷 Pig Dice Game (1-player)")
+    total = 0
+    while True:
+        roll = input("Roll the dice? (y/n): ").lower()
+        if roll != 'y':
+            break
+        die = random.randint(1, 6)
+        print(f"You rolled a {die}")
+        if die == 1:
+            print("Oops! You lose your points this round.")
+            total = 0
+            break
+        else:
+            total += die
+            print(f"Current score: {total}")
+    print(f"Final score: {total}")
+
+def rock_paper_scissors():
+    print("\n✊✋✌️ Rock, Paper, Scissors")
+    choices = ['rock', 'paper', 'scissors']
+    player = input("Choose rock, paper, or scissors: ").lower()
+    if player not in choices:
+        print("Invalid choice.")
+        return
+    computer = random.choice(choices)
+    print(f"Computer chose: {computer}")
+    if player == computer:
+        print("It's a tie!")
+    elif (player == "rock" and computer == "scissors") or \
+         (player == "scissors" and computer == "paper") or \
+         (player == "paper" and computer == "rock"):
+        print("You win!")
+    else:
+        print("You lose!")
+
+def wheel_of_fortune():
+    print("\n🎡 Wheel of Fortune")
+    outcomes = ["$100", "$200", "$500", "Bankrupt", "Lose a Turn", "$1000"]
+    spin = random.choice(outcomes)
+    print(f"You spun the wheel and got: {spin}")
+
+def main_menu():
+    while True:
+        print("\n🎮 Simple Game Menu")
+        print("1. Number Guessing Game")
+        print("2. Pig Dice")
+        print("3. Rock, Paper, Scissors")
+        print("4. Wheel of Fortune")
+        print("5. Exit")
+
+        choice = input("Select a game (1-5): ")
+
+        if choice == '1':
+            number_guessing_game()
+        elif choice == '2':
+            pig_dice()
+        elif choice == '3':
+            rock_paper_scissors()
+        elif choice == '4':
+            wheel_of_fortune()
+        elif choice == '5':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter 1-5.")
+
+if __name__ == "__main__":
+    main_menu()
+2
